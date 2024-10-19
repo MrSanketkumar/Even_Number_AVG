@@ -1,0 +1,12 @@
+mode: set
+GOLANG/handler/handlerAvg.go:12.60,15.33 2 1
+GOLANG/handler/handlerAvg.go:15.33,23.3 5 1
+GOLANG/handler/handlerAvg.go:25.2,27.16 3 1
+GOLANG/handler/handlerAvg.go:27.16,35.3 5 1
+GOLANG/handler/handlerAvg.go:37.2,37.32 1 1
+GOLANG/handler/handlerAvg.go:37.32,45.3 5 1
+GOLANG/handler/handlerAvg.go:47.2,49.16 3 1
+GOLANG/handler/handlerAvg.go:49.16,57.3 5 0
+GOLANG/handler/handlerAvg.go:59.2,60.16 2 1
+GOLANG/handler/handlerAvg.go:60.16,68.3 5 1
+GOLANG/handler/handlerAvg.go:70.2,76.27 4 1
