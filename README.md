@@ -6,7 +6,8 @@
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Red Hat](https://img.shields.io/badge/Red%20Hat-Compatible-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)
 [![Unit Tests](https://img.shields.io/badge/Unit%20Tests-Passing-4CAF50?style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/yourusername/even-number-average/actions)
-![Sample License](https://img.shields.io/badge/License-Sample-yellow.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE1aC0ydi02aDJ2NnptMyAwaC0yVjdoMnYxMHoiLz48L3N2Zz4=)
+![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+
 
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="Go" width="50" height="50"/>
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" width="50" height="50"/>
