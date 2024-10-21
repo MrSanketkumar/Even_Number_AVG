@@ -3,8 +3,6 @@
 <div align="center">
 
 ![Go Version](https://img.shields.io/github/go-mod/go-version/MrSanketKumar/Even_Number_AVG)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-[![Unit Tests](https://img.shields.io/badge/Unit%20Tests-Passing-4CAF50?style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/yourusername/even-number-average/actions)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/MrSanketKumar/Even_Number_AVG)
 ![MIT License](https://img.shields.io/github/license/MrSanketKumar/Even_Number_AVG)
 
