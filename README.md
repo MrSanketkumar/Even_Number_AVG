@@ -2,11 +2,11 @@
 
 <div align="center">
 
-![Go Version](https://img.shields.io/badge/Go-1.22-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Go Version](https://img.shields.io/github/go-mod/go-version/MrSanketKumar/Even_Number_AVG)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Red Hat](https://img.shields.io/badge/Red%20Hat-Compatible-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)
 [![Unit Tests](https://img.shields.io/badge/Unit%20Tests-Passing-4CAF50?style=for-the-badge&logo=checkmarx&logoColor=white)](https://github.com/yourusername/even-number-average/actions)
-![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/MrSanketKumar/Even_Number_AVG)
+![MIT License](https://img.shields.io/github/license/MrSanketKumar/Even_Number_AVG)
 
 
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="Go" width="50" height="50"/>
@@ -71,7 +71,7 @@ As a developer passionate about clean code and efficient algorithms, I created t
 
 2. Navigate to the project directory:
    ```bash
-   cd even-number-average
+   cd Even_Number_AVG
    ```
 
 3. Install dependencies:
