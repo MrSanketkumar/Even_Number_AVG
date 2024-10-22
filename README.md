@@ -4,6 +4,7 @@
 
 ![Go Version](https://img.shields.io/github/go-mod/go-version/MrSanketKumar/Even_Number_AVG)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/MrSanketKumar/Even_Number_AVG)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/MrSanketkumar/Even_Number_AVG)
 ![MIT License](https://img.shields.io/github/license/MrSanketKumar/Even_Number_AVG)
 
 
