@@ -1,7 +1,7 @@
 package businesslogic
 
 import (
-	"GOLANG/constant"
+	"Even_Number_AVG/constant"
 	"errors"
 )
 

@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"GOLANG/businessLogic"
-	"GOLANG/constant"
-	"GOLANG/logging"
-	"GOLANG/model"
+	"Even_Number_AVG/businessLogic"
+	"Even_Number_AVG/constant"
+	"Even_Number_AVG/logging"
+	"Even_Number_AVG/model"
 	"encoding/json"
 	"net/http"
 )

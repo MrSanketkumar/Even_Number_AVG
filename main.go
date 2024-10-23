@@ -1,8 +1,8 @@
 package main
 
 import (
-	"GOLANG/constant"
-	"GOLANG/handler"
+	"Even_Number_AVG/constant"
+	"Even_Number_AVG/handler"
 	"fmt"
 	"log"
 	"net/http"

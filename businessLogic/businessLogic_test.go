@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	//businesslogic "GOLANG/businessLogic"
-	"GOLANG/constant"
+	"Even_Number_AVG/constant"
 )
 func TestEvenNumber(t *testing.T) {
 	tests := []struct {

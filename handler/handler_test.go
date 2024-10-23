@@ -7,9 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"GOLANG/constant"
+	"Even_Number_AVG/constant"
 	// "GOLANG/handler"
-	"GOLANG/model"
+	"Even_Number_AVG/model"
 )
 
 func TestAverageCalculationWithValidInput(t *testing.T) {

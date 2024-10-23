@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"GOLANG/constant"
+	"Even_Number_AVG/constant"
 	// "GOLANG/handler"
-	"GOLANG/model"
+	"Even_Number_AVG/model"
 	"bytes"
 	"encoding/json"
 	"net/http"
