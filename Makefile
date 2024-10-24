@@ -102,8 +102,8 @@ s2i-build:
 	@sudo s2i build . quay.io/sanket/my-builder-image quay.io/sanket/my-even-application
 	@echo " s2i builer image is created successfully"
 
-s2i-push:
-	@sudo docker login quay.io --username sanket --password S@nket123
+s2i-push: s2i-build
+	@sudo docker login quay.io --username sanket --password ${{ secrets.PASSWORD_QUAY }} 
 	@echo " quay login successful"
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"

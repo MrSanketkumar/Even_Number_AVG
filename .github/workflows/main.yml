@@ -21,15 +21,12 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.7'
-      - name: Build application
+      - name: Build Application
         run: |
           make build
       - name: Test
         run: make test
-      - name: s2i Build
-        run: |
-          make s2i-build
-      - name: appliaction-pushed
+      - name: s2i Build and Push
         run: |
           make s2i-push
         
