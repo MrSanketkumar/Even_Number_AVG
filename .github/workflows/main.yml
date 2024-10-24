@@ -28,6 +28,7 @@ jobs:
         run: make test
       - name: s2i Build and Push
         run: |
+          sudo docker login -u sanket -p ${{ secrets.QUAY_PASSWORD }} quay.io 
           make s2i-push
         
         
