@@ -96,7 +96,10 @@ man:
 
 
 s2i-build:
-	@go get github.com/openshift/source-to-image/cmd/s2i
+	wget https://github.com/openshift/source-to-image/releases/download/v1.1.14/source-to-image-v1.1.14-874754de-linux-386.tar.gz
+	tar -xvf source-to-image-v1.1.14-874754de-linux-386.tar.gz
+	s2i source-to-image-v1.1.14-874754de-linux-386.tar.gz  sti
+	sudo cp s2i /usr/local/bin
 	@sudo s2i build . quay.io/sanket/my-builder-image quay.io/sanket/my-even-application
 	@echo " s2i builer image is created successfully"
 
