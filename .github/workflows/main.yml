@@ -1,0 +1,35 @@
+name: Build and test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  my_job:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: checkout application code
+        uses: actions/checkout@v4
+      - name: setup GO
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.7'
+      - name: Build application
+        run: |
+          make build
+      - name: Test
+        run: make test
+      - name: s2i Build
+        run: make s2i-build
+      - name: appliaction-pushed
+        run: make s2i-push
+        
+        
+  
