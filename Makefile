@@ -41,7 +41,7 @@ podman-run: podman-build
 	podman run -p 8080:8080 quay.io/sanket/evennumberaverage
 
 podman-push:
-	podman login quay.io --username $(USERNAME) --password $(PASSWORD)
+	podman login quay.io -u sanket -p ${{secrets.PASSWORD_QUAY}}
 	podman push quay.io/sanket/evennumberaverage
 	@echo "The image is pushed to quay.io"
 
@@ -103,7 +103,7 @@ s2i-build:
 	@echo " s2i builer image is created successfully"
 
 s2i-push: s2i-build
-	@sudo docker login quay.io -u sanket -p ${{secrets.PASSWORD_QUAY}} 
+	@sudo docker login -u sanket -p ${{ secrets.QUAY_PASSWORD }} quay.io 
 	@echo " quay login successful"
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
