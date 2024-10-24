@@ -96,11 +96,12 @@ man:
 
 
 s2i-build:
+	@wget 
 	@sudo s2i build . quay.io/sanket/my-builder-image quay.io/sanket/my-even-application
 	@echo " s2i builer image is created successfully"
 
 s2i-push:
-	@sudo docker login quay.io --username $(USERNAME) --password $(PASSWORD)
+	@sudo docker login quay.io --username sanket --password S@nket123
 	@echo " quay login successful"
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
