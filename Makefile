@@ -96,7 +96,7 @@ man:
 
 
 s2i-build:
-	@wget 
+	@go get github.com/openshift/source-to-image/cmd/s2i
 	@sudo s2i build . quay.io/sanket/my-builder-image quay.io/sanket/my-even-application
 	@echo " s2i builer image is created successfully"
 
