@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   pull_request:
     branches:
       - main
+  
+   
 
 jobs:
   my_job:
@@ -26,9 +30,18 @@ jobs:
           make build
       - name: Test
         run: make test
+      - name: Create release
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create avg-${{ github.ref_name }}-x86_64 \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag#v}"
       - name: s2i Build and Push
         run: |
-          sudo docker login -u sanket -p ${{ secrets.QUAY_PASSWORD }} quay.io 
+          sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
           make s2i-push
         
         
