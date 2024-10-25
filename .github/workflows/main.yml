@@ -47,9 +47,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
-        run: |
-              RELEASE_ID=$(gh release view --repo="$GITHUB_REPOSITORY" --json id --jq '.id')
-              gh release upload "$RELEASE_ID" --clobber --repo="$GITHUB_REPOSITORY" changelog.txt
+        run: |  
+          gh release upload --repo="$GITHUB_REPOSITORY" changelog.txt --clobber
       - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
