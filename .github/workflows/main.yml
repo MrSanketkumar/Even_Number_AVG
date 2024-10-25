@@ -24,11 +24,6 @@ jobs:
       - name: Build Application
         run: |
           make build
-
-      - name: Set binary absolute path
-        run: |
-            binary_path=$(pwd)/avg
-            echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: Test
         run: make test
     
