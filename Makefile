@@ -110,3 +110,6 @@ s2i-push: s2i-build
 changelog:
 	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
 	git log --oneline --decorate --first-parent $$PREVIOUS_TAG..HEAD; \
+	
+cleanlog:
+	rm -f changelog
