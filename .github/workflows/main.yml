@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: checkout application code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
       - name: setup GO
         uses: actions/setup-go@v5
         with:
@@ -32,8 +34,7 @@ jobs:
           echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: generate changelog
         run: |
-          git log
-          make changelog > changelog.md
+          make changelog > changelog.txt
       - name: Create release
         id: create_release
         env:
@@ -43,7 +44,7 @@ jobs:
           gh release create avg-${{ github.ref_name }}-x86_64 \
             --repo="$GITHUB_REPOSITORY" \
             --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-            --notes-file changelog.md \
+            --notes-file changelog.txt \
             
       - name: Upload changelog to release notes
         env:
