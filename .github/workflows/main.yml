@@ -34,7 +34,7 @@ jobs:
     
       - name: generate changelog
         run: |
-          git fetch --tags
+          
           PREVIOUS_TAG=$(git describe --abbrev=0 --tags --always $(git rev-parse --abbrev-ref HEAD)^)
           git log --oneline --decorate --first-parent ${PREVIOUS_TAG}.. > changelog.txt
       - name: Create release
@@ -43,7 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          cat changelog
+          
           gh release create even-${{ github.ref_name }}-x86_64 \
                 --repo="$GITHUB_REPOSITORY" \
                 --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
