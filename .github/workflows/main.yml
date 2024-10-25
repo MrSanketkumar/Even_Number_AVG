@@ -27,19 +27,6 @@ jobs:
       - name: Test
         run: make test
     
-      - name: s2i Build and Push
-        run: |
-          sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
-          make s2i-push
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: checkout application code
-        uses: actions/checkout@v4
       - name: generate changelog
         uses: github-changelog-generator@v1
       - name: create release
@@ -55,3 +42,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           artifact: ./path/to/artifact
           tag: ${{ github.ref_name }}
+      - name: s2i Build and Push
+        run: |
+          sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
+          make s2i-push
+      
