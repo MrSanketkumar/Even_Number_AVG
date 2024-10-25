@@ -34,7 +34,7 @@ jobs:
         run: |
           
           PREVIOUS_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
-          git log --oneline --decorate --first-parent ${PREVIOUS_TAG}.. > changelog.md
+          git log --oneline --decorate --first-parent ${PREVIOUS_TAG}.. > changelog
       - name: Create release
         id: create_release
         env:
@@ -44,7 +44,7 @@ jobs:
           gh release create avg-${{ github.ref_name }}-x86_64 \
             --repo="$GITHUB_REPOSITORY" \
             --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-            --notes-file changelog.md \
+            --notes-file changelog \
             
       - name: Upload changelog to release notes
         env:
