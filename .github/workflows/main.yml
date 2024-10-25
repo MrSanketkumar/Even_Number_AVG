@@ -28,7 +28,7 @@ jobs:
         run: make test
       - name: Set binary absolute path
         run: |
-          binary_path=$(pwd)
+          binary_path=$(pwd)/Even_Number_AVG
           echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: generate changelog
         run: |
@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh release upload avg-${{ github.ref_name }}-x86_64 ${{ env.BIN_PATH }} --clobber
+          gh release upload avg-${{ github.ref_name }}-x86_64 ${{ env.BIN_PATH }} --clobber     
       - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
