@@ -107,7 +107,7 @@ s2i-push: s2i-build
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
 
-changelog: cleanlog
+changelog: 
 	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
     git log --format='%Cblue%h%Creset %Cgreen%<(20)%s%Creset' --decorate --first-parent $$PREVIOUS_TAG..HEAD
 
@@ -123,5 +123,5 @@ changelog: cleanlog
 # echo "### 📈 Improvements" >> release_notes.md; \
 # echo "### 🚀 Tags: $$PREVIOUS_TAG" >> release_notes.md
 	
-cleanlog:
-	@rm -f changelog.txt
+# cleanlog:
+# 	@rm -f changelog.txt
