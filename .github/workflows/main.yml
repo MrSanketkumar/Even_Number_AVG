@@ -35,7 +35,7 @@ jobs:
       - name: generate changelog
         run: |
           
-          PREVIOUS_TAG=$(git describe --abbrev=0 --tags --always $(git rev-parse --abbrev-ref HEAD)^)
+          PREVIOUS_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
           git log --oneline --decorate --first-parent ${PREVIOUS_TAG}.. > changelog.txt
       - name: Create release
         id: create_release
