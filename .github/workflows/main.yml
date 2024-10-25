@@ -47,7 +47,7 @@ jobs:
           gh release create even-${{ github.ref_name }}-x86_64 \
                 --repo="$GITHUB_REPOSITORY" \
                 --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-                --notes-file changelog
+                --notes-file changelog.txt
       - name: Upload Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

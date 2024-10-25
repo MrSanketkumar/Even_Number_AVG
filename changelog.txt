@@ -1,4 +1,7 @@
-e6a6f71 (HEAD -> main, tag: v2.0, origin/main, origin/HEAD) chore: workflow updated
+f69b942 (HEAD -> main, tag: v2.0, origin/main, origin/HEAD) chore: workflow updated with relase note
+e8a6886 chore: workflow updated with relase note
+66b6f27 chore: workflow updated with relase note
+e6a6f71 chore: workflow updated
 92bd068 chore: workflow updated
 2898e59 chore: workflow updated
 6f91952 chore: workflow updated
