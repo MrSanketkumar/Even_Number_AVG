@@ -107,9 +107,21 @@ s2i-push: s2i-build
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
 
-changelog:
+changelog: cleanlog
 	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
     git log --format='%Cblue%h%Creset %Cgreen%<(20)%s%Creset' --decorate --first-parent $$PREVIOUS_TAG..HEAD
+
+
+
+
+# PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
+# echo "# 🚀 Release Notes 🚀" > release_notes.md; \
+# echo "## 📦 What's New" >> release_notes.md; \
+# echo "### 🎉 New Features" >> release_notes.md; \
+# git log --format='%Cblue%h%Creset %Cgreen%<(20)%s%Creset' --decorate --first-parent $$PREVIOUS_TAG..HEAD --pretty=format:'%Cblue[NEW RELEASE]%Creset %Cgreen%<(20)%s%Creset' >> release_notes.md; \
+# echo "### 🐛 Bug Fixes" >> release_notes.md; \
+# echo "### 📈 Improvements" >> release_notes.md; \
+# echo "### 🚀 Tags: $$PREVIOUS_TAG" >> release_notes.md
 	
 cleanlog:
-	rm -f changelog
+	@rm -f changelog.txt
