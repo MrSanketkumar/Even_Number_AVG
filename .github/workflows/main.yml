@@ -43,12 +43,12 @@ jobs:
             --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
             --notes-file changelog.txt \
             
-      - name: Upload Changelog
+      - name: Upload changelog to release notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
-        run: |  
-          gh release upload --repo="$GITHUB_REPOSITORY" changelog.txt --clobber
+        run: |
+          gh release upload avg-${{ github.ref_name }}-x86_64 --repo="$GITHUB_REPOSITORY" --file changelog.txt
       - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
