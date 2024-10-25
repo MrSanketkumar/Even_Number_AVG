@@ -106,3 +106,7 @@ s2i-push: s2i-build
 	@echo " quay login successful"
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
+
+changelog:
+	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
+	git log --oneline --decorate --first-parent $$PREVIOUS_TAG..HEAD; \
