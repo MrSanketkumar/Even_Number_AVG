@@ -43,14 +43,13 @@ jobs:
             --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
             --notes-file changelog.txt \
             
-      - name: Upload Artifact
+      - name: Upload Changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          RELEASE_ID=$(gh release view --repo="$GITHUB_REPOSITORY" --json id --jq '.id')
-          ARTIFACT_PATH=${GITHUB_WORKSPACE}/path/to/artifact
-          gh release upload "$RELEASE_ID" --clobber --repo="$GITHUB_REPOSITORY" "$ARTIFACT_PATH"
+              RELEASE_ID=$(gh release view --repo="$GITHUB_REPOSITORY" --json id --jq '.id')
+              gh release upload "$RELEASE_ID" --clobber --repo="$GITHUB_REPOSITORY" changelog.txt
       - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
