@@ -32,8 +32,9 @@ jobs:
           git log --oneline --decorate --no-merges > changelog.txt
       - name: create release
         uses: goreleaser/goreleaser-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           args: release
       - name: upload artifact
         uses: actions/upload-artifact@v3
