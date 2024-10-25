@@ -24,24 +24,36 @@ jobs:
       - name: Build Application
         run: |
           make build
+
+      - name: Set binary absolute path
+        run: |
+            binary_path=$(pwd)/avg
+            echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: Test
         run: make test
     
       - name: generate changelog
         run: |
-          git log --oneline --decorate --no-merges > changelog.txt
-      - name: create release
-        uses: goreleaser/goreleaser-action@v3
+          git fetch --tags
+          PREVIOUS_TAG=$(git describe --abbrev=0 --tags --always $(git rev-parse --abbrev-ref HEAD)^)
+          git log --oneline --decorate --first-parent ${PREVIOUS_TAG}.. > changelog.txt
+      - name: Create release
+        id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: release
-      - name: upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          artifact: ./path/to/artifact
           tag: ${{ github.ref_name }}
+        run: |
+          cat changelog
+          gh release create even-${{ github.ref_name }}-x86_64 \
+                --repo="$GITHUB_REPOSITORY" \
+                --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+                --notes-file changelog
+      - name: Upload Artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+            gh release upload avg-${{ github.ref_name }}-x86_64 ${{ env.BIN_PATH }} --clobber
       - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
