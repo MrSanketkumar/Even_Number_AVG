@@ -32,7 +32,8 @@ jobs:
           echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: generate changelog
         run: |
-          make changelog > changelog.txt
+          git log
+          make changelog > changelog.md
       - name: Create release
         id: create_release
         env:
@@ -42,7 +43,7 @@ jobs:
           gh release create avg-${{ github.ref_name }}-x86_64 \
             --repo="$GITHUB_REPOSITORY" \
             --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-            --notes-file changelog.txt \
+            --notes-file changelog.md \
             
       - name: Upload changelog to release notes
         env:
