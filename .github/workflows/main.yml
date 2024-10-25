@@ -28,7 +28,7 @@ jobs:
         run: make test
       - name: Set binary absolute path
         run: |
-          binary_path=$(pwd)/Even_Number_AVG
+          binary_path=$(pwd)/main
           echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
       - name: generate changelog
         run: |
