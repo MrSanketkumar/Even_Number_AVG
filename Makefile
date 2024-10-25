@@ -123,5 +123,3 @@ changelog:
 # echo "### 📈 Improvements" >> release_notes.md; \
 # echo "### 🚀 Tags: $$PREVIOUS_TAG" >> release_notes.md
 	
-# cleanlog:
-# 	@rm -f changelog.txt
