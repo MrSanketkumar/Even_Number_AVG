@@ -106,20 +106,14 @@ s2i-push: s2i-build
 	@echo " quay login successful"
 	@sudo docker push quay.io/sanket/my-even-application
 	@echo " my-even-application image is pushed to quay.io"
-
-changelog: 
-	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
-    git log --format='%Cblue%h%Creset %Cgreen%<(20)%s%Creset' --decorate --first-parent $$PREVIOUS_TAG..HEAD
-
-
-
-
-# PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
-# echo "# 🚀 Release Notes 🚀" > release_notes.md; \
-# echo "## 📦 What's New" >> release_notes.md; \
-# echo "### 🎉 New Features" >> release_notes.md; \
-# git log --format='%Cblue%h%Creset %Cgreen%<(20)%s%Creset' --decorate --first-parent $$PREVIOUS_TAG..HEAD --pretty=format:'%Cblue[NEW RELEASE]%Creset %Cgreen%<(20)%s%Creset' >> release_notes.md; \
-# echo "### 🐛 Bug Fixes" >> release_notes.md; \
-# echo "### 📈 Improvements" >> release_notes.md; \
-# echo "### 🚀 Tags: $$PREVIOUS_TAG" >> release_notes.md
 	
+changelog:
+	@echo "Generating changelog..."
+	@PREVIOUS_TAG=$$(git describe --abbrev=0 --tags $$(git rev-list --tags --skip=1 --max-count=1)); \
+    echo "# Changelog" > changelog; \
+    echo "## Latest Updates 🚀" >> changelog; \
+    git log --format='* %Cgreen%h%Creset %Cblue%<(20)%s%Creset %C(yellow)(%cd)%Creset' --date=short --decorate --first-parent $$PREVIOUS_TAG..HEAD >> changelog; \
+    echo "## Previous Versions 📜" >> changelog; \
+    git tag | sort -V | awk 'NR>1{print "* ["$$1"]("$$1")"}' >> changelog; \
+    echo "Generated changelog in 'changelog' file."
+

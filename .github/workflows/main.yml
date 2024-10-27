@@ -1,5 +1,4 @@
-name: Build and Test
-
+name: Build and test
 on:
   workflow_dispatch:
   push:
@@ -15,90 +14,45 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
-      - name: Checkout application code
+      - name: checkout application code
         uses: actions/checkout@v4
         with:
           fetch-depth: '0'
-
-      - name: Setup Go
+      - name: setup GO
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.7'
-
       - name: Build Application
         run: |
           make build
-
       - name: Test
         run: make test
-
       - name: Set binary absolute path
         run: |
           binary_path=$(pwd)/main
           echo "BIN_PATH=${binary_path}" >> $GITHUB_ENV
-
-      - name: Generate changelog
+      - name: generate changelog
         run: |
-          make changelog > changelog.txt
-
-      # - name: Create release
-      #   id: create_release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     tag: ${{ github.ref_name }}
-      #   run: |
-      #     gh release create avg-${{ github.ref_name }}-x86_64 \
-      #       --repo="$GITHUB_REPOSITORY" \
-      #       --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-      #       --notes-file changelog.txt \
-
-      # - name: Upload changelog to release notes
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     tag: ${{ github.ref_name }}
-      #   run: |
-      #     gh release upload avg-${{ github.ref_name }}-x86_64 ${{ env.BIN_PATH }} --clobber     
-
-      - name: Generate changelog
-        id: changelog  # Assign an ID to access outputs
-        uses: jaywcjlove/changelog-generator@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          filter-author: (https://github.com/MrSanketkumar)
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
-          template: |
-            ## Bugs
-            {{fix}}
-            ## Features
-            {{feat}}
-            ## Improvements
-            {{refactor,perf,clean}}
-            ## Misc 
-            {{chore,style,ci||🔶 Nothing changed}}
-            ## Unknown
-            {{__unknown__}}
-
-      - name: Save Changelog to File
-        run: echo "${{ steps.changelog.outputs.changelog }}" > changelog.md
-
-      - name: Upload Changelog
-        uses: actions/upload-artifact@v3
-        with:
-          name: changelog
-          path: changelog.md  # Path to the generated changelog file
-
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: Release ${{ github.ref }}  # Name of the release
-          tag: ${{ github.ref }}           # Tag of the release
-          body: |
-            ${{ steps.changelog.outputs.changelog }}  # Include the changelog in the release notes
-
-      - name: S2I Build and Push
+          make changelog 
+      - name: Create release
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create avg-${{ github.ref_name }}-x86_64 \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+            --notes-file changelog \
+            
+      - name: Upload changelog to release notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release upload avg-${{ github.ref_name }}-x86_64 ${{ env.BIN_PATH }} --clobber     
+      - name: s2i Build and Push
         run: |
           sudo docker login -u sanket -p ${{ secrets.PASSWORD }} quay.io 
           make s2i-push
